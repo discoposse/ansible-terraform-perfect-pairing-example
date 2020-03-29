@@ -43,7 +43,7 @@ resource "aws_instance" "cert33" {
   instance_type = "t2.large"
   key_name = "${var.aws_key_name}"
   subnet_id = "${var.aws_launch_subnet}"
-  vpc_security_group_ids = [ "${saws_security_group.instance.id}" ]
+  vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
   tags = {
         Name = "cert33"
         ProvisionedBy = "Project Terra"
