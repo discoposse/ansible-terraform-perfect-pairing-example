@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {}
  
 resource "aws_security_group" "instance" {
   name = "cert33-sg"
-  vpc_id = "${var.aws_vpc_id}"
+  vpc_id = "var.aws_vpc_id"
  
   ingress {
     from_port   = 80

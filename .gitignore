@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+exports.sh
 
 # Mac image cache junk
 .DS_Store
