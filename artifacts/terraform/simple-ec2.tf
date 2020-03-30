@@ -3,7 +3,7 @@ data "aws_availability_zones" "available" {}
 ### Create Security Group
  
 resource "aws_security_group" "instance" {
-  name = "cert-instance-sg"
+  name = "cert-${var.aws_instance_name}-sg"
   vpc_id = "${var.aws_vpc_id}"
  
   ingress {
