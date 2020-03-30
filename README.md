@@ -9,7 +9,7 @@ Before you use this as a reference for production, note that:
 * Security Group configuration is 0.0.0.0/0 for HTTP, HTTPS, and SSH - which is a terrible idea
 * The AMI used in the demo is only available in US-EAST-2 and is a pre-built Turbonomic instance
 
-There will be adjustments to make the AMI a variable but there security group issue is continuous as you need to be able to reach the instance using SSH to initially setup Ansible.  Ideally you should have a change at the Ansible build process to close up the security group after provisioning.  Hopefully this will be documented more fully here by @DiscoPosse :)
+There will be adjustments to make the AMI configurable as a variable but there security group issue is continuous as you need to be able to reach the instance using SSH to initially setup Ansible.  Ideally you should have a change at the Ansible build process to close up the security group after provisioning.  Hopefully this will be documented more fully here by @DiscoPosse :)
 
 ## About This Repository
 
