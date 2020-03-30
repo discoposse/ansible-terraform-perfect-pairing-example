@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {}
  
 resource "aws_security_group" "instance" {
   name = "${var.aws_instance_name}-sg"
-  vpc_id = "${var.aws_vpc_id}"
+  vpc_id = var.aws_vpc_id
  
   ingress {
     from_port   = 80
@@ -38,40 +38,28 @@ resource "aws_security_group" "instance" {
  
 ### Create EC2 Instance from AMI
  
-resource "aws_instance" "cert" {
+resource "aws_instance" "cert-instance" {
   ami = "ami-08aaa44ddb42288f1"
   instance_type = "t2.large"
-  key_name = "${var.aws_key_name}"
+  key_name = var.aws_key_name
   subnet_id = "${var.aws_launch_subnet}"
   vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
   tags = {
-        Name = "${var.aws_instance_name}"
+        Name = var.aws_instance_name
         ProvisionedBy = "Project Terra"
     }
 
   provisioner "remote-exec" {
     inline = [
-      "yum install epel-release -y",
-      "yum install ansible -y",
+      "sudo yum install epel-release -y",
+      "sudo yum install ansible -y",
     ]
 
     connection {
-      type = "ssh"
-      user = "centos"
-      private_key = ${var.aws_ssh_key}
-    }
-  }
-
-  provisioner "remote-exec" {
-    when    = "destroy"
-    inline = [
-      "touch /tmp/remove-from-tower.txt"
-    ]
-
-    connection {
-      type = "ssh"
-      user = "centos"
-      private_key = ${var.aws_ssh_key}
+      type        = "ssh"
+      user        = "centos"
+      private_key = var.aws_ssh_key
+      host        = self.public_ip
     }
   }
 }
@@ -102,7 +90,7 @@ resource "aws_alb" "instance" {
  
 resource "aws_lb_target_group_attachment" "instance" {
     target_group_arn = "${aws_alb_target_group.instance.arn}"
-    target_id = "${aws_instance.cert.id}"
+    target_id = "${aws_instance.cert-instance.id}"
     port = 443
 }
  
