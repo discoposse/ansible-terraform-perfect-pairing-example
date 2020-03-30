@@ -51,8 +51,8 @@ resource "aws_instance" "cert-instance" {
 
   provisioner "remote-exec" {
     inline = [
-      "yum install epel-release -y",
-      "yum install ansible -y",
+      "sudo yum install epel-release -y",
+      "sudo yum install ansible -y",
     ]
 
     connection {
