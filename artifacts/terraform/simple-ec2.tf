@@ -49,10 +49,17 @@ resource "aws_instance" "cert-instance" {
         ProvisionedBy = "Project Terra"
     }
 
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "yum install epel-release -y",
-  #    "yum install ansible -y",
-  #  ]
-  #}
+  provisioner "remote-exec" {
+    inline = [
+      "yum install epel-release -y",
+      "yum install ansible -y",
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "centos"
+      private_key = aws_ssh_key
+      host        = "${aws_instance.cert-instance.*.public_ip}"
+    }
+  }
 }
