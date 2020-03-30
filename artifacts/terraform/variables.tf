@@ -10,4 +10,4 @@ variable "aws_launch_subnet" {
 	default = "subnet-07d8310503d3d9704"
 }
 variable "turbonomic_instance_size" {}
-variable "instance_name" {}
+variable "aws_instance_name" {}
