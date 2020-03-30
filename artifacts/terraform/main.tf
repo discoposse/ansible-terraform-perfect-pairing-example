@@ -59,7 +59,7 @@ resource "aws_instance" "cert33" {
   provisioner "remote-exec" {
     when    = "destroy"
     inline = [
-      "echo 'Remove from Ansible Tower here'"
+      "touch /tmp/remove-from-tower.txt"
     ]
   }
 }
