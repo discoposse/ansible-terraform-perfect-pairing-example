@@ -49,10 +49,10 @@ resource "aws_instance" "cert-instance" {
         ProvisionedBy = "Project Terra"
     }
 
-  provisioner "remote-exec" {
-    inline = [
-      "yum install epel-release -y",
-      "yum install ansible -y",
-    ]
-  }
+  #provisioner "remote-exec" {
+  #  inline = [
+  #    "yum install epel-release -y",
+  #    "yum install ansible -y",
+  #  ]
+  #}
 }
