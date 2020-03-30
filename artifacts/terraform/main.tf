@@ -39,7 +39,7 @@ resource "aws_security_group" "instance" {
 ### Create EC2 Instance from AMI
  
 resource "aws_instance" "cert-instance" {
-  ami = "ami-08aaa44ddb42288f1"
+  ami = var.aws_ami_id
   instance_type = "t2.large"
   key_name = var.aws_key_name
   associate_public_ip_address = true

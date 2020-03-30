@@ -11,3 +11,4 @@ variable "aws_launch_subnet" {
 }
 variable "turbonomic_instance_size" {}
 variable "aws_instance_name" {}
+variable "aws_ami_id" {}
