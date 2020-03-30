@@ -42,6 +42,7 @@ resource "aws_instance" "cert-instance" {
   ami = "ami-08aaa44ddb42288f1"
   instance_type = "t2.large"
   key_name = var.aws_key_name
+  associate_public_ip_address = true
   subnet_id = "${var.aws_launch_subnet}"
   vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
   tags = {
