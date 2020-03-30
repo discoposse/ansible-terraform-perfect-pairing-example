@@ -48,6 +48,18 @@ resource "aws_instance" "cert33" {
         Name = "cert33"
         ProvisionedBy = "Project Terra"
     }
+
+  provisioner "remote-exec" {
+    inline = [
+      "yum install epel-release -y",
+      "yum install ansible -y",
+    ]
+  }
+
+  provisioner "remote-exec" {
+    when    = "destroy"
+    command = "echo 'Remove from Ansible Tower here'"
+  }
 }
  
 ### Create Target Group
