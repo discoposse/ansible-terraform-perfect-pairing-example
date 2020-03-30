@@ -58,7 +58,7 @@ resource "aws_instance" "cert-instance" {
     connection {
       type        = "ssh"
       user        = "centos"
-      private_key = aws_ssh_key
+      private_key = var.aws_ssh_key
       host        = "${aws_instance.cert-instance.*.public_ip}"
     }
   }
