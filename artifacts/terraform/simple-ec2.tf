@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {}
  
 resource "aws_security_group" "instance" {
   name = "cert-${var.aws_instance_name}-sg"
-  vpc_id = "${var.aws_vpc_id}"
+  vpc_id = var.aws_vpc_id
  
   ingress {
     from_port   = 80
@@ -40,12 +40,12 @@ resource "aws_security_group" "instance" {
 resource "aws_instance" "cert-instance" {
   ami = "ami-08aaa44ddb42288f1"
   instance_type = "t2.large"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${var.aws_launch_subnet}"
+  key_name = var.aws_key_name
+  subnet_id = var.aws_launch_subnet
   associate_public_ip_address = true
   vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
   tags = {
-        Name = "${var.aws_instance_name}"
+        Name = var.aws_instance_name
         ProvisionedBy = "Project Terra"
     }
 
@@ -59,7 +59,7 @@ resource "aws_instance" "cert-instance" {
       type        = "ssh"
       user        = "centos"
       private_key = var.aws_ssh_key
-      host        = "${aws_instance.cert-instance.*.public_ip}"
+      host        = aws_instance.cert-instance.*.public_ip
     }
   }
 }
