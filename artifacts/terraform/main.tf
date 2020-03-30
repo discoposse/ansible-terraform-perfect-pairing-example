@@ -40,7 +40,7 @@ resource "aws_security_group" "instance" {
  
 resource "aws_instance" "cert-instance" {
   ami = var.aws_ami_id
-  instance_type = "t2.large"
+  instance_type = var.turbonomic_instance_size
   key_name = var.aws_key_name
   associate_public_ip_address = true
   subnet_id = "${var.aws_launch_subnet}"
