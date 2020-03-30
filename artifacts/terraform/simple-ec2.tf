@@ -54,11 +54,5 @@ resource "aws_instance" "cert-instance" {
       "yum install epel-release -y",
       "yum install ansible -y",
     ]
-
-    connection {
-      type = "ssh"
-      user = "centos"
-      private_key = ${var.aws_ssh_key}
-    }
   }
 }
