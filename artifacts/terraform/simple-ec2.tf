@@ -59,7 +59,7 @@ resource "aws_instance" "cert-instance" {
       type        = "ssh"
       user        = "centos"
       private_key = var.aws_ssh_key
-      host        = var.aws_instance_name.public_dns
+      host        = self.public_ip
     }
   }
 }
