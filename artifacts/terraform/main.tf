@@ -58,7 +58,9 @@ resource "aws_instance" "cert33" {
 
   provisioner "remote-exec" {
     when    = "destroy"
-    command = "echo 'Remove from Ansible Tower here'"
+    inline = [
+      "echo 'Remove from Ansible Tower here'"
+    ]
   }
 }
  
