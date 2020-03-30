@@ -3,7 +3,7 @@ data "aws_availability_zones" "available" {}
 ### Create Security Group
  
 resource "aws_security_group" "instance" {
-  name = "cert33-sg"
+  name = "cert-instance-sg"
   vpc_id = "${var.aws_vpc_id}"
  
   ingress {
@@ -37,7 +37,7 @@ resource "aws_security_group" "instance" {
 
 ### Create EC2 Instance from AMI
  
-resource "aws_instance" "cert33" {
+resource "aws_instance" "cert-instance" {
   ami = "ami-08aaa44ddb42288f1"
   instance_type = "t2.large"
   key_name = "${var.aws_key_name}"
@@ -45,7 +45,7 @@ resource "aws_instance" "cert33" {
   associate_public_ip_address = true
   vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
   tags = {
-        Name = "cert33"
+        Name = "${var.aws_instance_name}"
         ProvisionedBy = "Project Terra"
     }
 }
