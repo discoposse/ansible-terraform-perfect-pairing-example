@@ -18,7 +18,7 @@ Before you use this as a reference for production, note that:
 You need to be able to reach the instance using SSH to initially setup Ansible.  Ideally you should have a change at the Ansible build process to close up the security group after provisioning.  Hopefully this will be documented more fully here by @DiscoPosse :)
 
 
-## Requiremens
+## Requirements
 
 To use this process as documented in the presetnation and demo:
 
