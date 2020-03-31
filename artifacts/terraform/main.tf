@@ -74,7 +74,7 @@ resource "aws_alb_target_group" "instance" {
     name = "${var.aws_instance_name}-target-group"
     port = 443
     protocol = "HTTPS"
-    vpc_id = "${var.aws_vpc_id}"
+    vpc_id = var.aws_vpc_id
 }
  
 ### Create ALB
