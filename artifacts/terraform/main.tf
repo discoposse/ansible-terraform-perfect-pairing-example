@@ -90,6 +90,7 @@ resource "aws_alb" "instance" {
     }
 }
  
+ 
 ### Add instance to target group
  
 resource "aws_lb_target_group_attachment" "instance" {
