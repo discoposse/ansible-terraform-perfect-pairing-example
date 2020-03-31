@@ -50,6 +50,9 @@ resource "aws_instance" "cert-instance" {
         ProvisionedBy = "Project Terra"
     }
 
+
+  ### Run remote execution via SSH - Install Ansible
+
   provisioner "remote-exec" {
     inline = [
       "sudo yum install epel-release -y",
