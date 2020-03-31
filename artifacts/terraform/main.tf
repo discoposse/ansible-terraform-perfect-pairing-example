@@ -137,7 +137,7 @@ data "aws_route53_zone" "selected" {
  
 resource "aws_route53_record" "cert33" {
             zone_id = "${data.aws_route53_zone.selected.zone_id}"
-            name = "${var.aws_instance_name}"
+            name = var.aws_instance_name
             type = "A"       
 
     alias {
